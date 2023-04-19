@@ -18,6 +18,13 @@
     "@angular/platform-browser": "^15.1.0",
     "@angular/platform-browser-dynamic": "^15.1.0",
     "@angular/router": "^15.1.0",
+    "@capacitor/filesystem": "^4.1.4",
+    "@capacitor/network": "^4.1.0",
+    "@zxing/ngx-scanner": "^3.8.1",
+    "bootstrap": "^5.2.3",
+    "ng-speed-test": "^2.3.2",
+    "primeicons": "^6.0.1",
+    "primeng": "^15.3.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

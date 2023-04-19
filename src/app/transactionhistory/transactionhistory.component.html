@@ -1,0 +1,26 @@
+<div class="bg pt-5">
+    <div class="bg-white  fixed-top shadow">
+        <h3 class="text-center mt-3 ">Transaction history</h3>
+
+    </div>
+<div >
+    <div *ngFor="let a of offlineTransaction"  class="row "> 
+        <div class="mt-5 col-2">
+            <span class="p-3 rounded rounded-5 icon-bg">Av</span>
+        </div>
+        <div class=" mt-5 text-start col-6">
+            <strong >{{a.mobile | slice:0:12}}</strong>
+           
+            <p>{{a.date | slice:1:25 }}</p>
+        </div>
+        <div class=" mt-5 col-4">
+            <p class="text-success text-left">
+                +{{a.amount}}</p>
+           
+        </div>
+    </div>
+
+</div>
+    
+   
+</div>

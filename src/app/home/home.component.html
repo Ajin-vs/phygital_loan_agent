@@ -1,0 +1,103 @@
+<div class="bg p-3 ">
+    <div class="container">
+        <p-toast position="center"></p-toast>
+    </div>
+   
+
+    <!-- <div #pnl header="Header" styleClass="mt-4">
+        <p class="m-0">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+    </div> -->
+    <div class="" >
+        
+        <!-- <p-sidebar [(visible)]="sidebarVisible">
+            <div class="d-flex justify-content-around mt-5">
+                <strong >Loan Agent</strong>
+                <p-inputSwitch (click)="changeTog()" [(ngModel)]="checked"></p-inputSwitch>
+            </div>
+           
+        </p-sidebar> -->
+    </div>
+  
+    <i class="pi pi-user rounded rounded-5 shadow bg-success text-light p-3 mb-3" style="font-size: 1.5rem">
+    </i>
+    <strong class="ms-3 fs-2">Ajin</strong>
+    
+   <span class="float-end">
+    <!-- {{netSpeed}} -->
+    
+    <i class="pi pi-circle-fill ms-3 crs "  style="font-size: 1.5rem"  [ngClass]="netSpeed >= 450 ? 'text-success':'text-danger'"   ></i>
+
+    <!-- <i class="pi pi-bell ms-3 crs" style="font-size: 1.5rem"   (click)="op.toggle($event)" pBadge value="0"></i> -->
+
+    <i class="pi pi-sign-out rounded rounded-5   text-dark p-3 mb-3 ms-1" style="font-size: 1.5rem"></i>
+    
+   </span>
+
+  
+    <!-- <div>
+        <h4 class="text-center text-light"> <strong>{{mode}} Mode</strong></h4>
+    </div> -->
+    <!-- <div class="position-absolute qr" *ngIf="checked">
+        <i routerLink="/qrCode/scanner" class=" text-center pi pi-qrcode shadow p-5 w-100 border border-primary icon-bg rounded rounded-2"
+        style="font-size: 2rem" ></i>
+
+    </div> -->
+    
+    
+<div   > 
+
+
+    <div class="pstyle position-relative ">
+        <div class="position-absolute top-0 w-100">
+            <div class="container mt-2 text-light">
+                <!-- <p>Current Balance</p> -->
+                <!-- <i class="pi pi-eye text-light m-1"
+                                            style="font-size: 1.5rem"></i> -->
+                
+            </div>
+            
+
+            <!-- <div >
+                <p-selectButton [options]="justifyOptions" [(ngModel)]="mode" optionValue="value" class="d-flex flex-row">
+                        <p  *ngFor="let item of justifyOptions " [ngClass]="(mode==item.value) ? 'text-success border' : 'text-danger'" > <strong>{{item.label}}</strong></p>
+                </p-selectButton>
+            </div> -->
+        </div>
+        <img src="../../../assets/images/homeImage.jpeg" class="img rounded rounded-5 shadow" alt="">
+        <!-- <img src="Downloads/test.png" class="img rounded rounded-5 shadow" alt=""> -->
+
+        <div class="position-absolute bottom-0 w-100">
+            <div class="container text-white">
+                <p>Reserve Bank of India</p>
+                <h4>Digital Rupee Wallet</h4>
+            </div>
+
+            <div class="rounded rounded-3 shadow bg-white p-5">
+
+
+              
+
+                
+            </div>
+
+        </div>
+    </div>
+
+        <div class="pt-4 text-center">
+            <button (click)="qrScanner()" class="crs shadow p-4 border border-primary icon-bg rounded rounded-2"
+                  > <i class="pi pi-qrcode p-1" style="font-size: 1.5rem"></i></button>
+
+               <button  class="crs shadow p-4 border border-primary icon-bg rounded rounded-2 ms-4" (click)="onlineSync()"><i class="pi pi-sync p-1 "  style="font-size: 1.5rem" aria-placeholder="tool" ></i></button> 
+
+        </div>
+
+
+       
+   
+<!-- <h1>{{connectionStatus}} </h1> -->
+    
+</div>
+</div>
