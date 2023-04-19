@@ -37,14 +37,14 @@ export class QrScannerComponent {
       // console.log(event);
 
       // console.log(`outbound/${crtDate}|${JSON.stringify(JSON.parse(recive[1]))}|${recive[2]}|'credit'.txt`,);
-      if (!recive[1] || recive[1] == undefined) {
+      if ( recive[4] != 'finance') {
         console.log("invalid data");
         // this.messageService.add({ severity: 'error', detail: 'invalid data' });
 
       }
       else {
         Filesystem.writeFile({
-          path: `inbound/${crtDate}|${JSON.stringify(JSON.parse(recive[1]))}|${recive[2]}|'credit'|${recive[3]}|'finance'.txt`,
+          path: `inbound/${crtDate}|${recive[2]}|${recive[3]}|'finance'.txt`,
           data: event,
           directory: Directory.Data,
           encoding: Encoding.UTF8

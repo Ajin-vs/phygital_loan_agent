@@ -5,6 +5,9 @@ import { Network } from '@capacitor/network';
 import { MessageService } from 'primeng/api';
 import {SpeedTestService} from 'ng-speed-test';
 import { TransactionService } from '../transaction.service';
+import { ConnectionService, ConnectionServiceOptions, ConnectionState } from 'ng-connection-service';
+import { Subscription, tap } from 'rxjs';
+import { AppserviceService } from '../appservice.service';
 
 @Component({
   selector: 'app-home',
@@ -17,34 +20,64 @@ export class HomeComponent {
   public connectionStatus: boolean = false;
   spinner = false;
   netSpeed=0;
-
-  constructor(private messageService: MessageService, private router: Router,private speedTestService:SpeedTestService,private transationService: TransactionService) { }
+  status!: string;
+  currentState!: ConnectionState;
+  subscription = new Subscription();
+  constructor(private appService: AppserviceService,private connectionService: ConnectionService,private messageService: MessageService, private router: Router,private speedTestService:SpeedTestService,private transationService: TransactionService) { }
   ngOnInit() {
     this.generateDirectory();
+
+    this.subscription.add(
+      this.connectionService.monitor().pipe(
+        tap((newState: ConnectionState) => {
+          this.currentState = newState;
+
+          if (this.currentState.hasNetworkConnection) {
+            this.status = 'ONLINE';
+            this.connectionStatus = true;
+            this.getNetSpeed();
+           
+
+          } else {
+            this.status = 'OFFLINE';
+            // console.log(this.status);
+            // this.connectionStatus = false;
+            // // this.netSpeed = 0;
+            this.appService.netSpeed.next(0)
+            // this.balance = localStorage.getItem('balance');
+            // let lo:any = localStorage.getItem('loans');
+            // this.loans =JSON.parse(lo)
+          }
+        })
+      ).subscribe()
+    );
+
+
 
     Network.getStatus().then(status => {
       this.connectionStatus = status.connected;
       if (!this.connectionStatus) {
         // this.balance = localStorage.getItem('balance');
-        this.netSpeed =0;
+        // this.netSpeed =0;
+        this.appService.netSpeed.next(0)
       } else {
         this.getNetSpeed();
       }
     });
 
-    Network.addListener('networkStatusChange', status => {
-      this.getNetSpeed();
-      this.connectionStatus = status.connected;
-      if (this.connectionStatus) {
-        setInterval(()=>{
-          this.getNetSpeed();
-        },5000)
-        // this.getBalance();
-      }
-      else {
-        this.netSpeed =0;
-      }
-    });
+    // Network.addListener('networkStatusChange', status => {
+    //   this.getNetSpeed();
+    //   this.connectionStatus = status.connected;
+    //   if (this.connectionStatus) {
+    //     setInterval(()=>{
+    //       this.getNetSpeed();
+    //     },5000)
+    //     // this.getBalance();
+    //   }
+    //   else {
+    //     this.netSpeed =0;
+    //   }
+    // });
   }
   qrScanner() {
     this.router.navigateByUrl('/qrScanner')
@@ -105,12 +138,13 @@ export class HomeComponent {
     try {
       this.speedTestService.getKbps(
         {
-          iterations: 10,
-          retryDelay: 1500,
+          iterations: 1,
+          retryDelay: 10000,
         }
       ).subscribe(
         (speed) => {
           this.netSpeed =speed;
+          this.appService.netSpeed.next(this.netSpeed)
           // console.log('Your speed is ' + speed);
         }
       )
@@ -127,5 +161,9 @@ export class HomeComponent {
       directory: Directory.Data
     }).then(data => { })
       .catch(err => { Filesystem.mkdir({ path: 'inbound', directory: Directory.Data }) })
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

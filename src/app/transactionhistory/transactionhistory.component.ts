@@ -14,13 +14,13 @@ export class TransactionhistoryComponent {
       data.map((tx:any)=>{
         let name = JSON.stringify(tx.name).split("|");
         // console.log(name[],"d");
-        if(name[5] !== undefined){
+        if(name[4] !== 'finance'){
           let tr ={
             date:name[0],
             // mobile:name[1]==JSON.parse(this.sender).mobile? name[4]:name[1],
-            mobile:name[4],
+            mobile:name[3],
             amount:name[2],
-            type: name[3].includes('debit')? 'debit':'credit'
+            // type: name[3].includes('debit')? 'debit':'credit'
           }
           this.offlineTransaction.push(tr);
         }

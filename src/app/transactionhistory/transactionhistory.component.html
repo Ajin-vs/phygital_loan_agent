@@ -6,7 +6,7 @@
 <div >
     <div *ngFor="let a of offlineTransaction"  class="row "> 
         <div class="mt-5 col-2">
-            <span class="p-3 rounded rounded-5 icon-bg">Av</span>
+            <span class="p-3 rounded rounded-5 icon-bg"><i class="pi pi-user"></i></span>
         </div>
         <div class=" mt-5 text-start col-6">
             <strong >{{a.mobile | slice:0:12}}</strong>
@@ -15,7 +15,7 @@
         </div>
         <div class=" mt-5 col-4">
             <p class="text-success text-left">
-                +{{a.amount}}</p>
+                {{a.amount}}</p>
            
         </div>
     </div>
