@@ -37,7 +37,10 @@ export class QrScannerComponent {
       // console.log(event);
 
       // console.log(`outbound/${crtDate}|${JSON.stringify(JSON.parse(recive[1]))}|${recive[2]}|'credit'.txt`,);
-      if ( recive[4] != 'finance') {
+      // console.log(JSON.stringify(recive),"herer",JSON.stringify(event),"data recived 12122");
+      // console.log(recive);
+      
+      if ( !recive[4].includes('finance')) {
         console.log("invalid data");
         // this.messageService.add({ severity: 'error', detail: 'invalid data' });
 

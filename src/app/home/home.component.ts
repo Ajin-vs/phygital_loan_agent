@@ -79,6 +79,7 @@ export class HomeComponent {
     //   }
     // });
   }
+  
   qrScanner() {
     this.router.navigateByUrl('/qrScanner')
   }
@@ -88,7 +89,7 @@ export class HomeComponent {
       path: '/inbound',
       directory: Directory.Data
     }).then((data) => {
-      console.log(data,"inbound");
+      // console.log(data,"inbound");
       if (!(data.files.length > 0)) {
         this.messageService.add({ severity: 'error', detail: 'There are No offline transactions to zync' });
         this.alertAudio.play();
@@ -104,9 +105,14 @@ export class HomeComponent {
               directory: Directory.Data,
               encoding: Encoding.UTF8,
             }).then(data => {
+              
               let res = JSON.stringify(data.data).split('|')[0];
               let signed = res.slice(1);
+              // console.log(JSON.stringify(signed),"this the file data 123");
+
               this.transationService.submitOfflineTx(signed).subscribe(res => {
+                // console.log(res,"after submitting");
+                
                 Filesystem.deleteFile({
                   path: `inbound/${transactions.name}`,
                   directory: Directory.Data,

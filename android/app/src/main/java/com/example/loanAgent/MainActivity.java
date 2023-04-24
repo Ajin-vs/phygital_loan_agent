@@ -1,4 +1,4 @@
-package com.example.app;
+package com.example.loanAgent;
 
 import com.getcapacitor.BridgeActivity;
 

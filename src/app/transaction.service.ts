@@ -7,7 +7,7 @@ import { Directory, Filesystem } from '@capacitor/filesystem';
   providedIn: 'root'
 })
 export class TransactionService {
-  public domain ='http://192.168.29.187:3000'
+  public domain ='http://mvp-phygital-wallet.ap-south-1.elasticbeanstalk.com'
   constructor(public httpClient: HttpClient) { }
   public submitOfflineTx(signed:any):Observable<any>{
     return this.httpClient.post(this.domain +'/submitOfflineXrp',{signed:signed})
